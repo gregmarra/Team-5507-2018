@@ -17,8 +17,11 @@ import org.usfirst.frc.team5507.robot.commands.GripperOpen;
 import org.usfirst.frc.team5507.robot.commands.IntakeTakeIn;
 import org.usfirst.frc.team5507.robot.commands.IntakeTakeOut;
 import org.usfirst.frc.team5507.robot.commands.SmartElevatorUp;
+import org.usfirst.frc.team5507.robot.commands.SmartGripperSetState;
 import org.usfirst.frc.team5507.robot.commands.SmartGripperTest;
+import org.usfirst.frc.team5507.robot.commands.SmartGripperToggle;
 import org.usfirst.frc.team5507.robot.commands.TestPrint;
+import org.usfirst.frc.team5507.robot.subsystems.SmartGripper2;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -73,8 +76,8 @@ public class OI {
 		aButton.whileHeld(new IntakeTakeIn());
 		xButton.whileHeld(new IntakeTakeOut());		
 
-		backLeft.whenPressed(new SmartElevatorUp()); //GripperOpen command
-		backRight.whenPressed(new SmartGripperTest(30));	
+		backLeft.whenPressed(new SmartGripperSetState(SmartGripper2.STATE_OPEN)); // Always open the gripper to drop the power cube
+		backRight.whenPressed(new SmartGripperToggle()); // Toggle between open and closed
 		bButton.whenPressed(new ElevatorUp());
 		bButton.whenPressed(new ElevatorUp());	
 		yButton.whenPressed(new ElevatorUp());		
